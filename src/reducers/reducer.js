@@ -3,13 +3,10 @@
  */
 
 import {combineReducers} from 'redux';
-import {postJedi} from '../actions/action';
 
-export const ADD_JEDI = 'ADD_JEDI';
+export const POST_JEDI = 'POST_JEDI';
 
-export const addJedi = ({jedi}) => ({type: ADD_JEDI, payload: {
-    jedi
-  }});
+
 function jediReducer(state = [], action) {
   switch (action.type) {
     case 'FETCH_FINISH':
@@ -17,15 +14,11 @@ function jediReducer(state = [], action) {
         ...action.payload,
         ...state
       ];
-    case ADD_JEDI:
-      const jedi = {
-        id: state.length + 1,
-        name: action.payload.jedi
-      }
-      postJedi(jedi);
+    case POST_JEDI:
+    console.log(action.payload);
       return [
         ...state,
-        jedi
+        action.payload
       ];
     default:
       return state;

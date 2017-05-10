@@ -15,9 +15,16 @@ export function fetchJedi() {
 }
 
 export function postJedi(jedi) {
- axios.post('http://localhost:3001/jedi', { id: jedi.id, name: jedi.name })
-  .then(function(response){
-    console.log('saved successfully')
-  });  
+  return (dispatch) => {
+    axios
+      .post('http://localhost:3001/jedi', {
+        id: jedi.id,
+        name: jedi.name
+      })
+      .then(function (response) {
+        console.log('saved successfully')
+        dispatch({type: 'POST_JEDI', payload: jedi });
+      });
 
+  }
 }

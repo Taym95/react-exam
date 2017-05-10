@@ -2,7 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import logo from '../logo.svg';
 import '../style/App.css';
-import {addJedi} from '../reducers/reducer';
+import {postJedi} from '../actions/action';
+
 import JediList from './jediList';
 import JediForm from './jediForm';
 import {fetchJedi} from '../actions/action';
@@ -17,10 +18,16 @@ class App extends Component {
   }
 
   onSubmit(event) {
+    const jedi = {
+      id: Object
+        .keys(this.props.jedi)
+        .length + 1,
+      name: event.target.jedi.value
+    }
     event.preventDefault();
     this
       .props
-      .dispatch(addJedi({jedi: event.target.jedi.value}));
+      .dispatch(postJedi(jedi));
     event.target.jedi.value = '';
   }
 
